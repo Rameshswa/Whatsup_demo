@@ -1,0 +1,52 @@
+package com.datadriven;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.binary.XSSFBCommentsTable;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class Datadriven_Write {
+	
+	public static void writeData() throws IOException {
+		File f = new File("C:\\Users\\Ramesh\\eclipse-workspace\\MavenPro\\UserDetails.xlsx");
+		
+		FileInputStream fwd = new FileInputStream(f);
+		
+		Workbook w = new XSSFWorkbook(fwd);
+		
+		Sheet createSheet = w.createSheet("EmployeeData");
+		
+		Row createRow = createSheet.createRow(0);
+		
+		Cell createCell = createRow.createCell(0);
+		
+		createCell.setCellValue("Ramesh");
+		
+		w.getSheet("EmployeeData").getRow(0).createCell(1).setCellValue("7603");
+		
+		w.getSheet("EmployeeData").createRow(1).createCell(0).setCellValue("Rajesh");
+		
+		w.getSheet("EmployeeData").getRow(1).createCell(1).setCellValue("7610");
+		
+		w.getSheet("EmployeeData").createRow(2).createCell(0).setCellValue("Alan");
+		
+		w.getSheet("EmployeeData").getRow(2).createCell(1).setCellValue("7621");
+		
+		FileOutputStream fos  =  new FileOutputStream(f);
+		
+		w.write(fos);
+		
+		w.close();	
+	}
+     public static void main(String[] args) throws IOException {
+		writeData();
+	}
+}
